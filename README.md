@@ -1,5 +1,11 @@
 # NairiBook (AI World Gen)
 
+NairiBook is part of the **Nairi Ecosystem** — a suite of AI-powered tools designed to bridge human knowledge and digital transformation.
+- [Nairi GitHub](https://github.com/SlavH/Nairi)
+- [Nairi Website](https://nairi-seven.vercel.app/)
+
+NairiBook is a sophisticated AI-driven engine designed to transform static PDF documentation into interactive, explorable 3D knowledge worlds. It leverages Large Language Models (LLMs) for content synthesis, Retrieval-Augmented Generation (RAG) for knowledge retrieval, and generative pipelines to map information into 3D environments.
+
 ## The Vision
 NairiBook is more than an engine; it is a platform for **Generative Knowledge Expedition**. We believe that static PDF documents belong to the past. Our mission is to transform dense, linear knowledge bases into immersive, explorable 3D spaces. By mapping complex concepts into physical dimensions, we enable users to "walk through" technical documentation, making information intuitive, memorable, and interactive.
 
