@@ -20,12 +20,32 @@ class WorldEngine:
         return vs
 
     async def generate_description(self, topic, context, model_name):
-        prompt = f"Create a JSON world map for {topic} based on: {context[:4000]}. JSON ONLY.\n" + \
-                 '{"world_name": "Name", "description": "Brief", "objects": [{"name": "Obj1", "description": "What it is", "appearance": "Visual"}], "environment": {"sky_color": "#1a1a2e"}}'
-        
+        prompt = f"""
+        Analyze the following context from a PDF book to construct a 3D simulation map.
+        Topic: {topic}
+        Context: {context[:6000]}
+
+        Generate a JSON object (ONLY JSON) representing the 3D world:
+        {{
+            "world_name": "Name of the concept",
+            "environment": {{"sky_color": "#000000", "ambient_light": "#ffffff"}},
+            "objects": [
+                {{
+                    "name": "Object Name",
+                    "shape": "sphere | box | torus | cone",
+                    "behavior": "orbit | pulse | float | static",
+                    "speed": 0.5,
+                    "color": "#ff0000",
+                    "description": "Educational summary of this object"
+                }}
+            ]
+        }}
+        Ensure the JSON is perfectly formatted.
+        """
         async with httpx.AsyncClient(timeout=120) as client:
             r = await client.post(f"{self.vllm_url}/chat/completions",
                 json={"model": model_name, "messages": [{"role": "user", "content": prompt}], "temperature": 0.7})
+            
             content = r.json()["choices"][0]["message"]["content"]
-            match = re.search(r'\{.*\}', content, re.DOTALL)
-            return json.loads(match.group()) if match else json.loads(content)
+            content = content.replace("```json", "").replace("```", "").strip()
+            return json.loads(content)
