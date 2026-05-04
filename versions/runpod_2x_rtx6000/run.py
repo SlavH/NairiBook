@@ -10,7 +10,7 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 # Configuration
 VLLM_URL = "http://localhost:8000/v1"
 MODEL_NAME = "mistralai/Mistral-7B-Instruct-v0.3" 
-NAIRIBOOK_PORT = 9000
+NAIRIBOOK_PORT = 7878
 
 app = FastAPI(title="NairiBook Engine - Web Interface")
 jobs = {}
