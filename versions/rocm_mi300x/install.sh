@@ -1,5 +1,10 @@
 #!/bin/bash
-# Install vLLM 0.17.1 specifically for ROCm 7.2
-pip install vllm==0.17.1 --no-deps
-pip install pydantic fastapi uvicorn[standard] openai langchain langchain-community faiss-cpu pypdf
-echo "✅ ROCm Optimized environment ready!"
+set -e
+echo "🚀 Preparing Production Environment for ROCm MI300X..."
+
+# Ensure dependencies are installed correctly within the environment
+# We install base requirements for our app
+pip install --upgrade pip
+pip install fastapi uvicorn[standard] openai langchain langchain-community langchain-text-splitters faiss-cpu pypdf sentence-transformers huggingface-hub diffusers accelerate transformers bitsandbytes ray cbor2
+
+echo "✅ Environment configured. Please ensure you are running this inside a ROCm-enabled container!"
