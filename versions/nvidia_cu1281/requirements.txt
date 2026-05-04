@@ -12,3 +12,8 @@ pypdf
 sentence-transformers
 huggingface-hub
 vllm
+torch
+diffusers
+accelerate
+transformers
+EOF
